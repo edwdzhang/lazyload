@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lazyload</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .placeholder {
+      height: 1000px;
+      border: 1px solid red;
+    }
+    img {
+      width: 100px;
+    }
+    .lazy-hide {
+      display: none;
+    }
+    .btn {
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="placeholder"></div>
+  <div class="warpper">
+    <img src="loading.gif" data-src="./death.jpg" class="lazy" />
+    <img src="loading.gif" data-src="./death.jpg" class="lazy" />
+    <img src="loading.gif" data-src="./death.jpg" class="lazy" />
+  </div>
+  <div class="placeholder"></div>
+  <div class="warpper">
+    <img src="loading.gif" data-src="./death.jpg" class="lazy lazy-hide" />
+  </div>
+  <button class="btn btn-show">show hidden image</button>
+  <button class="btn btn-clean">clean</button>
+  <script type="module">
+    import LazyLoad from './lazyload.js'
+    const query = (selector) => {
+      return document.querySelectorAll(selector)
+    }
+    const btnShow = query('.btn-show')[0]
+    const btnClean = query('.btn-clean')[0]
+
+    const ll = new LazyLoad({
+      selector: 'img.lazy'
+    })
+
+    btnShow.addEventListener('click', () => {
+      const els = Array.from(query('.lazy-hide'))
+      els.forEach(el => {
+        el.classList.remove('lazy-hide')
+      })
+    }, false)
+
+    btnClean.addEventListener('click', () => {
+      ll.clean()
+    }, false)
+
+  </script>
+</body>
+
+</html>
