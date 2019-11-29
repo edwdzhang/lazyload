@@ -1,4 +1,4 @@
-export function debounce (fn, wait = 50, immediate = false) {
+export function debounce (fn: () => any, wait = 50, immediate = false) {
   let timer = null
 
   return function (...args: any[]) {
