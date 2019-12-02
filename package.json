@@ -4,7 +4,7 @@
   "description": "Lazy load resource",
   "main": "dis/index.common.js",
   "scripts": {
-    "test": ""
+    "dev": "webpack-dev-server --watch --config ./examples/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -13,10 +13,22 @@
   "keywords": [
     "lazyload"
   ],
-  "author": "Katt Zhang",
+  "author": "Katt Zhang <1193055507@qq.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kattzhang/LazyLoad/issues"
   },
-  "homepage": "https://github.com/kattzhang/LazyLoad#readme"
+  "homepage": "https://github.com/kattzhang/LazyLoad#readme",
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
 }

@@ -1,38 +1,26 @@
 import Events from './events'
 import Observer from './observer'
-import { addEvent, query } from './util'
+import { addEvent, removeEvent, query } from './util'
 
-export default class LazyLoad {
-  $options: Object
-  $els: Element[]
-  __ob__: Observer | Events
+export default {
+  listen (
+    el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>
+  ) {
+    const els = query(el)
+    let watch: Observer | Events
+  
+    if (!els.length) return
 
-  static options = {
-    selector: ''
-  }
+    // priority using IntersectionObserver interface, 
+    // otherwise fallback to use event
+    if ('IntersectionObserver' in window) {
+      watch = new Observer(els)
+    } else {
+      watch = new Events(els)
+    }
 
-  constructor (options = {}) {
-    this.$options = Object.assign({}, LazyLoad.options, options)
-    this.$els = null
-
-    this._domReady()
-  }
-
-  _domReady () {
-    const opts = this.$options
-
-    addEvent(document, 'DOMContentLoaded', () => {
-      const els = this.$els = query(opts.selector)
-      if (!els.length) return
-      if (IntersectionObserver) {
-        this.__ob__ = new Observer(els)
-      } else {
-        this.__ob__ = new Events(els)
-      }
-    })
-  }
-
-  clean () {
-    this.__ob__.clean()
+    return function unwatch () {
+      watch.clean()
+    }
   }
 }

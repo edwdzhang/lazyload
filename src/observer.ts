@@ -1,10 +1,12 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver
 
 export default class Observer {
-  els: Element[]
+  els: Array<HTMLImageElement | HTMLVideoElement>
   observer: IntersectionObserver
 
-  constructor (els: Element[]) {
+  constructor (
+    els: NodeListOf<HTMLImageElement | HTMLVideoElement>
+  ) {
     this.els = Array.from(els)
 
     this.init()
@@ -16,7 +18,7 @@ export default class Observer {
         const isInViewport = entry.isIntersecting
         
         if (isInViewport) {
-          const target = entry.target
+          const target = <HTMLImageElement | HTMLVideoElement>entry.target
           target.src = target.dataset.src
           ob.unobserve(target)
         }

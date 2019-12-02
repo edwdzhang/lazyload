@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lazyload</title>
+</head>
+
+<body>
+  <div class="placeholder"></div>
+  <div class="warpper">
+    <img src="./asserts/loading.gif" data-src="./asserts/death.jpg" class="lazy" />
+    <img src="./asserts/loading.gif" data-src="./asserts/death.jpg" class="lazy" />
+    <img src="./asserts/loading.gif" data-src="./asserts/death.jpg" class="lazy" />
+  </div>
+  <div class="placeholder"></div>
+  <div class="warpper">
+    <img src="./asserts/loading.gif" data-src="./asserts/death.jpg" class="lazy lazy-hide" />
+  </div>
+  <div class="btn-wrapper">
+    <button class="btn btn-init">init</button>
+    <button class="btn btn-clean">clean</button>
+    <button class="btn btn-show">show hidden image</button>
+  </div>
+</body>
+
+</html>

@@ -20,15 +20,25 @@ export function debounce (fn: () => any, wait = 50, immediate = false) {
   }
 }
 
-export function addEvent (el, name, handler) {
+export function addEvent (
+  el: Element | HTMLDocument, 
+  name: string, 
+  handler: EventListener
+) {
   el.addEventListener(name, handler, false)
 }
 
-export function removeEvent (el, name, handler) {
+export function removeEvent (
+  el: Element | HTMLDocument, 
+  name: string, 
+  handler: EventListener
+) {
   el.removeEventListener(name, handler)
 }
 
-export function query (el) {
+export function query<T> (
+  el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>
+): NodeListOf<HTMLImageElement | HTMLVideoElement> {
   if (typeof el === 'string') {
     return document.querySelectorAll(el)
   } else {

@@ -1,10 +1,12 @@
 import { addEvent, removeEvent, debounce } from './util'
 
 export default class Events {
-  els: Element[]
-  handleLoad: Function
+  els: Array<HTMLImageElement | HTMLVideoElement>
+  handleLoad: EventListener
 
-  constructor (els: Element[]) {
+  constructor (
+    els: NodeListOf<HTMLImageElement | HTMLVideoElement>
+  ) {
     this.els = Array.from(els)
     this.handleLoad = debounce(this.load).bind(this)
 
@@ -35,10 +37,12 @@ export default class Events {
   addEvents () {
     addEvent(document, 'scroll', this.handleLoad)
     addEvent(document, 'resize', this.handleLoad)
+    addEvent(document, 'orientationchange', this.handleLoad)
   }
 
   clean () {
     removeEvent(document, 'scroll', this.handleLoad)
     removeEvent(document, 'resize', this.handleLoad)
+    removeEvent(document, 'orientationchange', this.handleLoad)
   }
 }
