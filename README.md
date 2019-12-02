@@ -1,6 +1,6 @@
 # LazyLoad
 
-Lazy load resource such as image and video
+Lazy load resource like image or video
 
 # API Reference
 
