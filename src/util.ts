@@ -36,7 +36,7 @@ export function removeEvent (
   el.removeEventListener(name, handler)
 }
 
-export function query<T> (
+export function query (
   el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>
 ): NodeListOf<HTMLImageElement | HTMLVideoElement> {
   if (typeof el === 'string') {
