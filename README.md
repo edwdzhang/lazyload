@@ -6,4 +6,8 @@ Lazy load resource such as image and video
 
 - lazyload.listen(selector | Element)
 
-  To Watch elements. which return a function that can unwatch elements
+  Watch elements. which return a function that can unwatch elements.
+
+# License
+
+MIT@[kattzhang](https://github.com/kattzhang).
