@@ -11,6 +11,7 @@ export default class Events {
     this.handleLoad = debounce(this.load).bind(this)
 
     this.addEvents()
+    // immediately excute once
     this.load()
   }
 
