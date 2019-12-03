@@ -1,6 +1,6 @@
 import Events from './events'
 import Observer from './observer'
-import { addEvent, removeEvent, query } from './util'
+import { query, isNative } from './util'
 
 export default {
   listen (
@@ -13,7 +13,7 @@ export default {
 
     // priority using IntersectionObserver interface, 
     // otherwise fallback to use event
-    if ('IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window && isNative(IntersectionObserver)) {
       watch = new Observer(els)
     } else {
       watch = new Events(els)

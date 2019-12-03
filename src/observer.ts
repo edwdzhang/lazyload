@@ -18,6 +18,7 @@ export default class Observer {
         const isInViewport = entry.isIntersecting
         
         if (isInViewport) {
+          // cast type
           const target = <HTMLImageElement | HTMLVideoElement>entry.target
           target.src = target.dataset.src
           ob.unobserve(target)

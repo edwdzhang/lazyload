@@ -4,10 +4,10 @@ Lazy load resource like image or video
 
 # API Reference
 
-- lazyload.listen(selector | Element)
+- lazyload.listen(selector | NodeList)
 
-  Watch elements. which return a function that can unwatch elements.
+  Watch elements. which returns a function that can unwatch elements.
 
 # License
 
-MIT@[kattzhang](https://github.com/kattzhang).
+MIT[@kattzhang](https://github.com/kattzhang).

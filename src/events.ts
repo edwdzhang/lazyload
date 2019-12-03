@@ -1,5 +1,11 @@
 import { addEvent, removeEvent, debounce } from './util'
 
+const events = [
+  'scroll', 
+  'resize', 
+  'orientationchange'
+]
+
 export default class Events {
   els: Array<HTMLImageElement | HTMLVideoElement>
   handleLoad: EventListener
@@ -30,19 +36,20 @@ export default class Events {
         el.src = el.dataset.src
       }
     })
-  
+    
+    // only hold elements which are not loaded
     this.els = els.filter(el => el.getAttribute('src') !== el.dataset.src)
   }
 
   addEvents () {
-    addEvent(document, 'scroll', this.handleLoad)
-    addEvent(document, 'resize', this.handleLoad)
-    addEvent(document, 'orientationchange', this.handleLoad)
+    events.forEach(name => {
+      addEvent(document, name, this.handleLoad)
+    })
   }
 
   clean () {
-    removeEvent(document, 'scroll', this.handleLoad)
-    removeEvent(document, 'resize', this.handleLoad)
-    removeEvent(document, 'orientationchange', this.handleLoad)
+    events.forEach(name => {
+      removeEvent(document, name, this.handleLoad)
+    })
   }
 }

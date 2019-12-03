@@ -1,4 +1,8 @@
-export function debounce (fn: () => any, wait = 50, immediate = false) {
+export function isNative (Ctor: any): boolean {
+  return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+}
+
+export function debounce (fn: () => any, wait = 50, immediate = false): Function {
   let timer = null
 
   return function (...args: any[]) {
