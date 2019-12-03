@@ -1,6 +1,5 @@
-import path from 'path'
 import ts from 'rollup-plugin-typescript2'
-// import { uglify } from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
 
 const configs = [
   {
@@ -21,6 +20,10 @@ const configs = [
 
 const pakageConfigs = configs.map(option => {
   const { input, file, format, name = '', mini } = option
+  const tsPlugin = ts({
+    typescript: require("typescript")
+  })
+  const terserPlugin = mini ? terser() : null
 
   return {
     input: './src/index.ts',
@@ -30,9 +33,8 @@ const pakageConfigs = configs.map(option => {
       name
     },
     plugins: [
-      ts({
-        typescript: require("typescript")
-      })
+      tsPlugin,
+      terserPlugin
     ]
   }
 })
