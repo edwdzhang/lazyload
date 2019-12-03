@@ -4,19 +4,17 @@ export default class Observer {
   els: Array<HTMLImageElement | HTMLVideoElement>
   observer: IntersectionObserver
 
-  constructor (
-    els: NodeListOf<HTMLImageElement | HTMLVideoElement>
-  ) {
+  constructor(els: NodeListOf<HTMLImageElement | HTMLVideoElement>) {
     this.els = Array.from(els)
 
     this.init()
   }
 
-  init () {
-    const ob = this.observer = new IntersectionObserver(entries => {
+  init() {
+    const ob = (this.observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const isInViewport = entry.isIntersecting
-        
+
         if (isInViewport) {
           // cast type
           const target = <HTMLImageElement | HTMLVideoElement>entry.target
@@ -24,14 +22,14 @@ export default class Observer {
           ob.unobserve(target)
         }
       })
-    })
+    }))
 
     this.els.forEach(el => {
       ob.observe(el)
     })
   }
 
-  clean () {
+  clean() {
     this.observer.disconnect()
   }
 }

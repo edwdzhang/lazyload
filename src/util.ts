@@ -1,8 +1,8 @@
-export function isNative (Ctor: any): boolean {
+export function isNative(Ctor: any): boolean {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
 }
 
-export function query (
+export function query(
   el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>
 ): NodeListOf<HTMLImageElement | HTMLVideoElement> {
   if (typeof el === 'string') {
@@ -12,30 +12,30 @@ export function query (
   }
 }
 
-export function add (
-  el: Element | HTMLDocument, 
-  name: string, 
+export function add(
+  el: Element | HTMLDocument,
+  name: string,
   handler: EventListener
 ) {
   el.addEventListener(name, handler, false)
 }
 
-export function remove (
-  el: Element | HTMLDocument, 
-  name: string, 
+export function remove(
+  el: Element | HTMLDocument,
+  name: string,
   handler: EventListener
 ) {
   el.removeEventListener(name, handler)
 }
 
-export function debounce (
-  fn: () => any, 
-  wait = 50, 
+export function debounce(
+  fn: () => any,
+  wait = 50,
   immediate = false
 ): Function {
   let timer = null
 
-  return function (...args: any[]) {
+  return function(...args: any[]) {
     const context = this
 
     if (timer) clearTimeout(timer)
