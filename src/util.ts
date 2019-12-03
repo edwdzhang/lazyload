@@ -2,7 +2,37 @@ export function isNative (Ctor: any): boolean {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
 }
 
-export function debounce (fn: () => any, wait = 50, immediate = false): Function {
+export function query (
+  el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>
+): NodeListOf<HTMLImageElement | HTMLVideoElement> {
+  if (typeof el === 'string') {
+    return document.querySelectorAll(el)
+  } else {
+    return el
+  }
+}
+
+export function add (
+  el: Element | HTMLDocument, 
+  name: string, 
+  handler: EventListener
+) {
+  el.addEventListener(name, handler, false)
+}
+
+export function remove (
+  el: Element | HTMLDocument, 
+  name: string, 
+  handler: EventListener
+) {
+  el.removeEventListener(name, handler)
+}
+
+export function debounce (
+  fn: () => any, 
+  wait = 50, 
+  immediate = false
+): Function {
   let timer = null
 
   return function (...args: any[]) {
@@ -21,31 +51,5 @@ export function debounce (fn: () => any, wait = 50, immediate = false): Function
         fn.apply(context, args)
       }, wait)
     }
-  }
-}
-
-export function addEvent (
-  el: Element | HTMLDocument, 
-  name: string, 
-  handler: EventListener
-) {
-  el.addEventListener(name, handler, false)
-}
-
-export function removeEvent (
-  el: Element | HTMLDocument, 
-  name: string, 
-  handler: EventListener
-) {
-  el.removeEventListener(name, handler)
-}
-
-export function query (
-  el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>
-): NodeListOf<HTMLImageElement | HTMLVideoElement> {
-  if (typeof el === 'string') {
-    return document.querySelectorAll(el)
-  } else {
-    return el
   }
 }

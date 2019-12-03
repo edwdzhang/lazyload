@@ -10,4 +10,4 @@ Lazy load resource like image or video
 
 # License
 
-MIT[@kattzhang](https://github.com/kattzhang).
+MIT @[kattzhang](https://github.com/kattzhang).

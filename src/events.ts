@@ -1,4 +1,4 @@
-import { addEvent, removeEvent, debounce } from './util'
+import { add, remove, debounce } from './util'
 
 const events = [
   'scroll', 
@@ -43,13 +43,13 @@ export default class Events {
 
   addEvents () {
     events.forEach(name => {
-      addEvent(document, name, this.handleLoad)
+      add(document, name, this.handleLoad)
     })
   }
 
   clean () {
     events.forEach(name => {
-      removeEvent(document, name, this.handleLoad)
+      remove(document, name, this.handleLoad)
     })
   }
 }
