@@ -1,6 +1,6 @@
 import Events from './events'
 import Observer from './observer'
-import { query, isNative } from './util'
+import { query, supportIntersectionOb } from './util'
 
 const options = {}
 
@@ -13,7 +13,7 @@ export default {
 
     // priority using IntersectionObserver interface,
     // otherwise fallback to use event
-    if ('IntersectionObserver' in window && isNative(IntersectionObserver)) {
+    if (supportIntersectionOb) {
       watch = new Observer(els)
     } else {
       watch = new Events(els)
