@@ -11,7 +11,7 @@
     "dev": "webpack-dev-server --watch --config ./scripts/webpack.examples.js",
     "lint": "prettier --write --parser typescript \"src/*.ts?(x)\"",
     "build": "rimraf dist && rollup -c",
-    "pub": "sh scripts/realease.sh"
+    "pub": "sh scripts/release.sh"
   },
   "lint-staged": {
     "*.ts?(x)": [
