@@ -1,4 +1,4 @@
-# LazyLoad
+# Lazyload
 
 Lazy load resource like image or video
 
@@ -10,11 +10,17 @@ npm install --save @cany/lazyload
 
 # Usage
 
+```html
+<img src="loading.gif" data-src="real-image-url" />
+<video data-src="real-video-url"></video>
+```
+
 ```js
 import ll from '@cany/lazyload'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const unwatch = ll.listen('img.lazy')
+  const unwatchImages = ll.listen('img.lazy')
+  const unwatchVideos = ll.listen('video.lazy')
 })
 ```
 

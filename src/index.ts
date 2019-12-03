@@ -2,6 +2,8 @@ import Events from './events'
 import Observer from './observer'
 import { query, isNative } from './util'
 
+const options = {}
+
 export default {
   listen(el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>) {
     const els = query(el)
@@ -20,5 +22,15 @@ export default {
     return function unwatch() {
       watch.clean()
     }
+  },
+
+  config(opts: Object) {
+    if (!opts) return options
+
+    Object.keys(opts).forEach(key => {
+      options[key] = opts[key]
+    })
+
+    return this
   }
 }
