@@ -32,4 +32,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 # License
 
-MIT @[kattzhang](https://github.com/kattzhang).
+MIT [@kattzhang](https://github.com/kattzhang).
