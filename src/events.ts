@@ -1,6 +1,6 @@
 import { add, remove, debounce } from './util'
 
-const events = ['scroll', 'resize', 'orientationchange']
+const eventNames = ['scroll', 'resize', 'orientationchange']
 
 export default class Events {
   els: Array<HTMLImageElement | HTMLVideoElement>
@@ -37,13 +37,13 @@ export default class Events {
   }
 
   addEvents() {
-    events.forEach(name => {
+    eventNames.forEach(name => {
       add(document, name, this.handleLoad)
     })
   }
 
   clean() {
-    events.forEach(name => {
+    eventNames.forEach(name => {
       remove(document, name, this.handleLoad)
     })
   }
