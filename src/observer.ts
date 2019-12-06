@@ -4,7 +4,7 @@ export default class Observer {
   els: Array<HTMLImageElement | HTMLVideoElement>
   observer: IntersectionObserver
 
-  constructor(els: NodeListOf<HTMLImageElement | HTMLVideoElement>) {
+  constructor(els: Array<HTMLImageElement | HTMLVideoElement>) {
     this.els = Array.from(els)
 
     this.init()

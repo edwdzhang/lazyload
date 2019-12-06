@@ -6,7 +6,7 @@ export default class Events {
   els: Array<HTMLImageElement | HTMLVideoElement>
   handleLoad: EventListener
 
-  constructor(els: NodeListOf<HTMLImageElement | HTMLVideoElement>) {
+  constructor(els: Array<HTMLImageElement | HTMLVideoElement>) {
     this.els = Array.from(els)
     this.handleLoad = debounce(this.load).bind(this)
 

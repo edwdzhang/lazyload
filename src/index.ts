@@ -5,7 +5,7 @@ import { query, supportIntersectionOb } from './util'
 const options = {}
 
 export default {
-  listen(el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>) {
+  listen(el: string | NodeListOf<Element>) {
     const els = query(el)
     let watch: Observer | Events
 

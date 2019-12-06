@@ -6,19 +6,18 @@ export function isNative(Ctor: any): boolean {
 }
 
 export function query(el: string | NodeListOf<Element>) {
-  let els
+  let els = []
 
   if (typeof el === 'string') {
     els = Array.from(document.querySelectorAll(el))
-  } else if (el.length) {
-    els = Array.from(el)
   } else {
-    els = [el]
+    els = Array.from(el)
   }
 
-  return els.filter((el: Element) => {
-    let tagName = el.tagName.toLowerCase()
-    return tagName === 'img' || tagName === 'video'
+  // filter out img and video elements
+  return els.filter(el => {
+    const tag = el.tagName.toLowerCase()
+    return tag === 'img' || tag === 'video'
   })
 }
 
