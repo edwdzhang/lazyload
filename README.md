@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 ```
 
-# API Reference
+# API
 
 - lazyload.listen(selector | NodeList)
 
