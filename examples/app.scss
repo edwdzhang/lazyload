@@ -12,6 +12,12 @@ img {
   border: 1px solid red;
 }
 
+.wrapper {
+  &.scroll-horizontal {
+    overflow-x: scroll;
+  }
+}
+
 .lazy-hide {
   display: none;
 }

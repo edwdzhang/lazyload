@@ -1,4 +1,4 @@
-import ll from '../dist/index.common'
+import ll from '../src/index'
 import './app.scss'
 
 const query = (selector: string) => {

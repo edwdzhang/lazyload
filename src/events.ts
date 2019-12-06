@@ -23,8 +23,12 @@ export default class Events {
 
     els.forEach(el => {
       const rect = el.getBoundingClientRect()
-      const height = window.innerHeight || document.documentElement.clientHeight
-      const isInViewport = rect.top <= height && rect.bottom >= 0 ? true : false
+      const clientWidth =
+        window.innerWidth || document.documentElement.clientWidth
+      const clientHeight =
+        window.innerHeight || document.documentElement.clientHeight
+      const isInViewport =
+        rect.top <= clientHeight && rect.left <= clientWidth ? true : false
       const isVisible = getComputedStyle(el)['display'] !== 'none'
 
       if (isInViewport && isVisible) {
@@ -33,7 +37,7 @@ export default class Events {
     })
 
     // only hold elements which are not loaded
-    this.els = els.filter(el => el.getAttribute('src') !== el.dataset.src)
+    this.els = els.filter(el => el.getAttribute('src') !== el.dataset.url)
   }
 
   addEvents() {

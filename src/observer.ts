@@ -18,7 +18,7 @@ export default class Observer {
         if (isInViewport) {
           // cast type
           const target = <HTMLImageElement | HTMLVideoElement>entry.target
-          target.src = target.dataset.src
+          target.src = target.dataset.url
           ob.unobserve(target)
         }
       })

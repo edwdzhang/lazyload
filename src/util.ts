@@ -5,14 +5,21 @@ export function isNative(Ctor: any): boolean {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
 }
 
-export function query(
-  el: string | NodeListOf<HTMLImageElement | HTMLVideoElement>
-): NodeListOf<HTMLImageElement | HTMLVideoElement> {
+export function query(el: string | NodeListOf<Element>) {
+  let els
+
   if (typeof el === 'string') {
-    return document.querySelectorAll(el)
+    els = Array.from(document.querySelectorAll(el))
+  } else if (el.length) {
+    els = Array.from(el)
   } else {
-    return el
+    els = [el]
   }
+
+  return els.filter((el: Element) => {
+    let tagName = el.tagName.toLowerCase()
+    return tagName === 'img' || tagName === 'video'
+  })
 }
 
 export function add(
