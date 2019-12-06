@@ -11,8 +11,8 @@ npm install --save @cany/lazyload
 # Usage
 
 ```html
-<img src="loading.gif" data-src="real-image-url" class="lazy" />
-<video data-src="real-video-url" class="lazy"></video>
+<img src="loading.gif" data-url="real-image-url" class="lazy" />
+<video data-url="real-video-url" class="lazy"></video>
 ```
 
 ```js
