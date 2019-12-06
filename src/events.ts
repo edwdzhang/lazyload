@@ -32,7 +32,7 @@ export default class Events {
       const isVisible = getComputedStyle(el)['display'] !== 'none'
 
       if (isInViewport && isVisible) {
-        el.src = el.dataset.src
+        el.src = el.dataset.url
       }
     })
 
