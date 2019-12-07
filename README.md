@@ -4,8 +4,16 @@ Lazy load resource like image or video
 
 # Installation
 
+## NPM
+
 ```sh
 npm install --save @cany/lazyload
+```
+
+## CDN
+
+```html
+<script src="https://unpkg.com/@cany/lazyload/dist/index.min.js"></script>
 ```
 
 # Usage
@@ -16,11 +24,11 @@ npm install --save @cany/lazyload
 ```
 
 ```js
-import ll from '@cany/lazyload'
+import lazyload from '@cany/lazyload'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const unwatchImages = ll.listen('img.lazy')
-  const unwatchVideos = ll.listen('video.lazy')
+  const unwatchImages = lazyload.listen('img.lazy')
+  const unwatchVideos = lazyload.listen('video.lazy')
 })
 ```
 
