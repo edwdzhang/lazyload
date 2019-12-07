@@ -1,6 +1,7 @@
 #!/bin/sh
 
 git checkout master
+git pull
 
 VERSION=`npx select-version-cli`
 
