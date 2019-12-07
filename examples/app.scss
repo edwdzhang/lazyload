@@ -15,6 +15,9 @@ img {
 .wrapper {
   &.scroll-horizontal {
     overflow-x: scroll;
+    img {
+      margin-left: 110%;
+    }
   }
 }
 
