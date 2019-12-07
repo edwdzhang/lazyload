@@ -1,4 +1,4 @@
-# Lazyload
+# lazyload
 
 Lazy load resource like image or video
 
