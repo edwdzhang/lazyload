@@ -2,7 +2,7 @@
 
 Lazy load resource like image or video
 
-# Installation
+# Install
 
 ## NPM
 
