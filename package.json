@@ -9,46 +9,49 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --watch --config ./scripts/webpack.examples.js",
-    "lint": "prettier --write --parser typescript \"src/*.ts?(x)\"",
     "build": "rimraf dist && rollup -c",
-    "pub": "sh scripts/release.sh"
+    "lint": "prettier --write --parser typescript \"src/*.ts?(x)\"",
+    "release": "sh scripts/release.sh"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.ts?(x)": [
-      "prettier --parser=typescript --write",
-      "git add"
+      "prettier --parser=typescript --write"
     ],
     "*.{js,css,json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kattzhang/LazyLoad.git"
+    "url": "git+https://github.com/kimozhang/LazyLoad.git"
   },
   "keywords": [
     "lazyload"
   ],
-  "author": "Katt Zhang <1193055507@qq.com>",
+  "author": "Kimo Zhang <1193055507@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kattzhang/LazyLoad/issues"
+    "url": "https://github.com/kimozhang/LazyLoad/issues"
   },
-  "homepage": "https://github.com/kattzhang/LazyLoad#readme",
+  "homepage": "https://github.com/kimozhang/LazyLoad#readme",
   "devDependencies": {
     "css-loader": "^3.2.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
-    "node-sass": "^4.13.0",
     "prettier": "1.19.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.27.8",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.25.2",
     "rollup-plugin-uglify": "^6.0.3",
-    "sass-loader": "^8.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
     "select-version-cli": "^0.0.2",
     "style-loader": "^1.0.1",
     "ts-loader": "^6.2.1",
@@ -56,10 +59,5 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }

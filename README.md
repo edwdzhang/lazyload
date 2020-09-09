@@ -10,6 +10,12 @@ Lazy load resource like image or video
 npm install --save @cany/lazyload
 ```
 
+## Yarn
+
+```sh
+yarn add @cany/lazyload
+```
+
 ## CDN
 
 ```html
@@ -40,4 +46,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 # License
 
-MIT [@kattzhang](https://github.com/kattzhang).
+MIT [@kimozhang](https://github.com/kimozhang).
