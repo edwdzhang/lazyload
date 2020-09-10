@@ -19,7 +19,7 @@ export default {
       watch = new Events(els)
     }
 
-    return function unwatch() {
+    return function remove() {
       watch.clean()
     }
   },

@@ -2,7 +2,7 @@ import { add, remove, debounce } from './util'
 
 const eventNames = ['scroll', 'resize', 'orientationchange']
 
-export default class Events {
+class Events {
   els: Array<HTMLImageElement | HTMLVideoElement>
   handleLoad: EventListener
 
@@ -52,3 +52,5 @@ export default class Events {
     })
   }
 }
+
+export default Events

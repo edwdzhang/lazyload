@@ -1,6 +1,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver
 
-export default class Observer {
+class Observer {
   els: Array<HTMLImageElement | HTMLVideoElement>
   observer: IntersectionObserver
 
@@ -33,3 +33,5 @@ export default class Observer {
     this.observer.disconnect()
   }
 }
+
+export default Observer
