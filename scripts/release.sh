@@ -16,7 +16,7 @@ then
 
   # commit
   git add -A
-  git commit -m "[build] $VERSION"
+  git commit -m "[build] $VERSION" --no-verify
   npm version $VERSION --message "[release] $VERSION"
 
   # publish
