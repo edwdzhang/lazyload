@@ -1,6 +1,6 @@
 {
   "name": "@cany/lazyload",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Lazy load resource like image or video",
   "main": "dist/index.common.js",
   "module": "dist/index.esm.js",
