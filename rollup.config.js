@@ -33,5 +33,11 @@ export default {
       plugins: [terser()]
     }
   ],
-  plugins: [resolve(), ts()]
+  plugins: [
+    resolve(), 
+    ts({
+      typescript: require('typescript'),
+      objectHashIgnoreUnknownHack: true,
+    })
+  ]
 }
