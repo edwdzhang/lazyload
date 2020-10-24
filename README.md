@@ -27,8 +27,7 @@ yarn add @cany/lazyload
 import lazyload from '@cany/lazyload'
 
 document.addEventListener('DOMContentLoaded', () => {
-  lazyload.listen('img.lazy')
-  lazyload.listen('video.lazy')
+  lazyload.listen('.lazy')
 })
 ```
 
