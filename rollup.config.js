@@ -1,42 +1,45 @@
+import resolve from '@rollup/plugin-node-resolve'
 import ts from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 
-const configs = [
-  {
-    file: 'dist/index.common.js',
-    format: 'cjs',
-  },
-  {
-    file: 'dist/index.esm.js',
-    format: 'esm',
-  },
-  {
-    file: 'dist/index.min.js',
-    format: 'iife',
-    mini: true,
-    name: 'lazyload'
-  }
-]
-
-const pakageConfigs = configs.map(option => {
-  const { input, file, format, name = '', mini } = option
-  const tsPlugin = ts({
-    typescript: require("typescript")
-  })
-  const terserPlugin = mini ? terser() : null
-
-  return {
-    input: './src/index.ts',
-    output: {
-      file,
-      format,
-      name
+const config = {
+  input: 'src/index.ts',
+  output: [
+    {
+      format: 'esm',
+      file: 'dist/lazyload.esm.js',
     },
-    plugins: [
-      tsPlugin,
-      terserPlugin
-    ]
-  }
-})
+    {
+      format: 'cjs',
+      file: 'dist/lazyload.common.js',
+      exports: 'auto'
+    },
+    {
+      format: 'iife',
+      name: 'lazyload',
+      file: 'dist/lazyload.js',
+    },
+    {
+      format: 'iife',
+      name: 'lazyload',
+      file: 'dist/lazyload.min.js',
+      plugins: [
+        terser()
+      ]
+    },
+    {
+      format: 'iife',
+      name: 'lazyload',
+      file: 'dist/index.min.js',
+      plugins: [
+        terser()
+      ]
+    }
+  ],
+  plugins: [
+    resolve(),
+    ts()
+  ]
+}
 
-export default pakageConfigs
+export default config
