@@ -1,12 +1,12 @@
 import ll from '../src/index'
 import './app.scss'
 
-const query = (selector: string) => {
+const $ = (selector: string) => {
   return document.querySelectorAll(selector)
 }
-const btnInit = query('.btn-init')[0]
-const btnClean = query('.btn-clean')[0]
-const btnShow = query('.btn-show')[0]
+const btnInit = $('.btn-init')[0]
+const btnClean = $('.btn-clean')[0]
+const btnShow = $('.btn-show')[0]
 
 let unwatch = null
 
@@ -32,7 +32,7 @@ btnClean.addEventListener(
 btnShow.addEventListener(
   'click',
   () => {
-    const els = Array.from(query('.lazy-hide'))
+    const els = Array.from($('.lazy-hide'))
     els.forEach(el => {
       el.classList.remove('lazy-hide')
     })

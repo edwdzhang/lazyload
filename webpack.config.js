@@ -3,17 +3,17 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 function resolve(p) {
-  return path.resolve(__dirname, '..', p)
+  return path.resolve(__dirname, './', p)
 }
 
 module.exports = {
-  entry: './examples/main.ts',
+  entry: './demo/main.ts',
   output: {
-    path: resolve('examples/dist'),
+    path: resolve('demo/dist'),
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.js']
   },
   module: {
     rules: [
@@ -34,12 +34,12 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'examples/index.html'
+      template: 'demo/index.html'
     })
   ],
   devServer: {
     port: 8085,
-    contentBase: resolve('examples'),
+    contentBase: resolve('demo'),
     open: true,
     hot: true,
     stats: 'errors-only'

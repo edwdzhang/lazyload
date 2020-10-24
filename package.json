@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --watch",
     "build": "rimraf dist && rollup -c"
   },
   "husky": {

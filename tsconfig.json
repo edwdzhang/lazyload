@@ -3,7 +3,6 @@
     "baseUrl": ".",
     "outDir": "dist",
     "target": "es5",
-    "strict": true,
     "module": "esnext",
     "moduleResolution": "node",
     "jsx": "preserve",
