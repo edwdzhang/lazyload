@@ -4,32 +4,32 @@ import './app.scss'
 const $ = (selector: string) => {
   return document.querySelectorAll(selector)
 }
-const btnInit = $('.btn-init')[0]
-const btnClean = $('.btn-clean')[0]
-const btnShow = $('.btn-show')[0]
+const $init = $('.btn-init')[0]
+const $clean = $('.btn-clean')[0]
+const $show = $('.btn-show')[0]
 
-let unwatch = null
+let unlisten: any
 
-// initialize watch
-btnInit.addEventListener(
+// initialize listen
+$init.addEventListener(
   'click',
   () => {
-    unwatch = ll.listen('img.lazy')
+    unlisten = ll.listen('img.lazy')
   },
   false
 )
 
 // clean watch
-btnClean.addEventListener(
+$clean.addEventListener(
   'click',
   () => {
-    unwatch()
+    unlisten()
   },
   false
 )
 
 // show hidden image
-btnShow.addEventListener(
+$show.addEventListener(
   'click',
   () => {
     const els = Array.from($('.lazy-hide'))
