@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --watch",
-    "build": "rimraf dist && rollup -c"
+    "build": "rimraf dist && rollup -c",
+    "publish": "npm run build && npm publish --acess=public"
   },
   "husky": {
     "hooks": {

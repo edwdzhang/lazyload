@@ -34,10 +34,10 @@ export default {
     }
   ],
   plugins: [
-    resolve(), 
+    resolve(),
     ts({
       typescript: require('typescript'),
-      objectHashIgnoreUnknownHack: true,
+      objectHashIgnoreUnknownHack: true
     })
   ]
 }
