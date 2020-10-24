@@ -7,7 +7,7 @@ const config = {
   output: [
     {
       format: 'esm',
-      file: 'dist/lazyload.esm.js',
+      file: 'dist/lazyload.esm.js'
     },
     {
       format: 'cjs',
@@ -17,29 +17,22 @@ const config = {
     {
       format: 'iife',
       name: 'lazyload',
-      file: 'dist/lazyload.js',
+      file: 'dist/lazyload.js'
     },
     {
       format: 'iife',
       name: 'lazyload',
       file: 'dist/lazyload.min.js',
-      plugins: [
-        terser()
-      ]
+      plugins: [terser()]
     },
     {
       format: 'iife',
       name: 'lazyload',
       file: 'dist/index.min.js',
-      plugins: [
-        terser()
-      ]
+      plugins: [terser()]
     }
   ],
-  plugins: [
-    resolve(),
-    ts()
-  ]
+  plugins: [resolve(), ts()]
 }
 
 export default config
