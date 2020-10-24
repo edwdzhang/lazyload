@@ -2,8 +2,6 @@ import Events from './events'
 import Observer from './observer'
 import { query, supportIntersectionOb } from './util'
 
-const options = {}
-
 export default {
   listen(el: string | NodeListOf<Element>) {
     const els = query(el)
@@ -22,15 +20,5 @@ export default {
     return function remove() {
       watch.clean()
     }
-  },
-
-  config(opts: Object) {
-    if (!opts) return options
-
-    Object.keys(opts).forEach(key => {
-      options[key] = opts[key]
-    })
-
-    return this
   }
 }
