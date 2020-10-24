@@ -2,16 +2,16 @@
   "name": "@cany/lazyload",
   "version": "0.0.5",
   "description": "Lazy load resource like image or video",
-  "main": "dist/index.common.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/lazyload.common.js",
+  "module": "dist/lazyload.esm.js",
+  "types": "dist/lazyload.d.ts",
   "files": [
+    "src",
     "dist"
   ],
   "scripts": {
-    "dev": "webpack-dev-server --watch --config ./scripts/webpack.examples.js",
-    "build": "rimraf dist && rollup -c",
-    "lint": "prettier --write --parser typescript \"src/*.ts?(x)\"",
-    "release": "sh scripts/release.sh"
+    "dev": "webpack-dev-server",
+    "build": "rimraf dist && rollup -c"
   },
   "husky": {
     "hooks": {
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kimozhang/LazyLoad.git"
+    "url": "git+https://github.com/kimozhang/lazyload.git"
   },
   "keywords": [
     "lazyload"
@@ -36,9 +36,9 @@
   "author": "Kimo Zhang <1193055507@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kimozhang/LazyLoad/issues"
+    "url": "https://github.com/kimozhang/lazyload/issues"
   },
-  "homepage": "https://github.com/kimozhang/LazyLoad#readme",
+  "homepage": "https://github.com/kimozhang/lazyload#readme",
   "devDependencies": {
     "css-loader": "^3.2.0",
     "html-webpack-plugin": "^3.2.0",
@@ -49,10 +49,8 @@
     "rollup": "^1.27.8",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.25.2",
-    "rollup-plugin-uglify": "^6.0.3",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
-    "select-version-cli": "^0.0.2",
     "style-loader": "^1.0.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
