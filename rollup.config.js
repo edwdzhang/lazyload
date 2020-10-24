@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import ts from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 
-const config = {
+export default {
   input: 'src/index.ts',
   output: [
     {
@@ -25,6 +25,7 @@ const config = {
       file: 'dist/lazyload.min.js',
       plugins: [terser()]
     },
+    // Backward compatible
     {
       format: 'iife',
       name: 'lazyload',
@@ -34,5 +35,3 @@ const config = {
   ],
   plugins: [resolve(), ts()]
 }
-
-export default config
