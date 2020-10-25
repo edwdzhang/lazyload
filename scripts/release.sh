@@ -1,11 +1,14 @@
 #!bin/sh
 
+# dev
+git checkout dev
+npm run build
 VERSION=`npm version patch`
-echo "$VERSION 1"
-# npm run build
-# git push
+git push origin dev
 
-# git checkout master
-# git merge dev
-
-# npm publish -access public
+# master
+git checkout master
+git merge dev
+npm publish -access public
+git push origin refs/tags/$VERSION
+git checkout dev
