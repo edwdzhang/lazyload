@@ -1,7 +1,7 @@
 #!bin/sh
 
 VERSION=`npm version patch`
-echo '$VERSION 1'
+echo "$VERSION 1"
 # npm run build
 # git push
 
