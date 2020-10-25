@@ -24,16 +24,16 @@ yarn add @cany/lazyload
 ```
 
 ```js
-import lazyload from '@cany/lazyload'
+import Lazyload from '@cany/lazyload'
 
 document.addEventListener('DOMContentLoaded', () => {
-  lazyload.listen('.lazy')
+  Lazyload.listen('.lazy')
 })
 ```
 
 # API
 
-- **lazyload.listen(selector | NodeList)**
+- **Lazyload.listen(selector | NodeList)**
 
   Listen to elements. which returns a function that can unlisten to elements.
 
