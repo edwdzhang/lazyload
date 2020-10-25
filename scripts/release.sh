@@ -9,6 +9,8 @@ git push origin dev
 # master
 git checkout master
 git merge dev
+git add -A
+git commit -m "merge dev"
 git push origin master
 
 # publish
