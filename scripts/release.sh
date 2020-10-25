@@ -1,8 +1,9 @@
 #!bin/sh
 
-git checkout master
-git merge dev
+npm version patch
 npm run build
 
-npm version patch
+git checkout master
+git merge dev
+
 npm publish -access public
