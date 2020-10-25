@@ -16,20 +16,13 @@ export default {
     },
     {
       format: 'iife',
-      name: 'lazyload',
+      name: 'Lazyload',
       file: 'dist/lazyload.js'
     },
     {
       format: 'iife',
-      name: 'lazyload',
+      name: 'Lazyload',
       file: 'dist/lazyload.min.js',
-      plugins: [terser()]
-    },
-    // Backward compatible
-    {
-      format: 'iife',
-      name: 'lazyload',
-      file: 'dist/index.min.js',
       plugins: [terser()]
     }
   ],
