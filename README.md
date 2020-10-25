@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 # API
 
-- lazyload.listen(selector | NodeList)
+- **lazyload.listen(selector | NodeList)**
 
   Listen to elements. which returns a function that can unlisten to elements.
 
