@@ -10,7 +10,7 @@ git push origin dev
 git checkout master
 git merge dev
 git add -A
-git commit -m "merge dev"
+git commit -m "[release] $VERSION"
 git push origin master
 
 # publish
