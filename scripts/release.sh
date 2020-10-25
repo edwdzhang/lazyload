@@ -9,11 +9,13 @@ git push origin dev
 # master
 git checkout master
 git merge dev
+git add -A
+git commit -m "[release] $VERSION"
 git push origin master
 
 # publish
 npm config set registry=https://registry.npmjs.org/
-npm publish -access public
+npm publish --access public
 git push origin refs/tags/$VERSION
 
 # dev
