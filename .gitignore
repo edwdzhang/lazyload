@@ -7,7 +7,6 @@ yarn-error.log*
 
 # folder
 node_modules
-lib
 dist
 
 # file

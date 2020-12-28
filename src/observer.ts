@@ -2,29 +2,32 @@
 
 class Observer {
   els: Array<HTMLImageElement | HTMLVideoElement>
-  observer: IntersectionObserver
+  observer: IntersectionObserver | any
 
   constructor(els: Array<HTMLImageElement | HTMLVideoElement>) {
     this.els = Array.from(els)
-
     this.init()
   }
 
   init() {
-    const ob = (this.observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    const ob = (this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         const isInViewport = entry.isIntersecting
 
         if (isInViewport) {
           // cast type
           const target = <HTMLImageElement | HTMLVideoElement>entry.target
-          target.src = target.dataset.url
-          ob.unobserve(target)
+          const url = target.dataset.url
+
+          if (url) {
+            target.src = url
+            ob.unobserve(target)
+          }
         }
       })
     }))
 
-    this.els.forEach(el => {
+    this.els.forEach((el) => {
       ob.observe(el)
     })
   }

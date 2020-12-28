@@ -5,20 +5,16 @@ export function isNative(Ctor: any): boolean {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
 }
 
-export function query(el: string | NodeListOf<Element>) {
-  let els = []
+export function query(el: string | Element[]): Element[] {
+  let els: Element[] = []
 
-  if (typeof el === 'string') {
-    els = Array.from(document.querySelectorAll(el))
-  } else {
-    els = Array.from(el)
-  }
+  els =
+    typeof el === 'string'
+      ? Array.from(document.querySelectorAll(el))
+      : Array.from(el)
 
-  // filter out img and video elements
-  return els.filter(el => {
-    const tag = el.tagName.toLowerCase()
-    return tag === 'img' || tag === 'video'
-  })
+  // filter out img and video element
+  return els.filter((el) => /(img|video)/gi.test(el.tagName))
 }
 
 export function add(
@@ -34,30 +30,26 @@ export function remove(
   name: string,
   handler: EventListener
 ) {
-  el.removeEventListener(name, handler)
+  el.removeEventListener(name, handler, false)
 }
 
-export function debounce(
-  fn: () => any,
-  wait = 50,
-  immediate = false
-): Function {
-  let timer = null
+export function debounce(fn: Function, wait = 50, immediate = false): Function {
+  let timer: any
 
-  return function(...args: any[]) {
-    const context = this
-
-    if (timer) clearTimeout(timer)
+  return function (this: any, ...args: any[]) {
+    if (timer) {
+      clearTimeout(timer)
+    }
 
     if (immediate) {
       let callNow = !timer
       timer = setTimeout(() => {
         timer = null
       })
-      if (callNow) fn.apply(context, args)
+      if (callNow) fn.apply(this, args)
     } else {
       timer = setTimeout(() => {
-        fn.apply(context, args)
+        fn.apply(this, args)
       }, wait)
     }
   }

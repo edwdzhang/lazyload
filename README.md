@@ -13,7 +13,7 @@ yarn add @cany/lazyload
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@cany/lazyload/dist/lazyload.min.js"></script>
+<script src="https://unpkg.com/@cany/lazyload"></script>
 ```
 
 # Example

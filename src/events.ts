@@ -10,7 +10,7 @@ class Events {
     this.els = Array.from(els)
     this.handleLoad = debounce(this.load).bind(this)
 
-    this.addEvents()
+    this.initEvent()
     // immediately excute once
     this.load()
   }
@@ -18,38 +18,32 @@ class Events {
   load() {
     const els = this.els
     if (!els.length) {
-      this.clean()
+      return this.clean()
     }
 
-    els.forEach(el => {
+    els.forEach((el) => {
+      const clientWidth = window.innerWidth
+      const clientHeight = window.innerHeight
       const rect = el.getBoundingClientRect()
-      const clientWidth =
-        window.innerWidth || document.documentElement.clientWidth
-      const clientHeight =
-        window.innerHeight || document.documentElement.clientHeight
-      const isInViewport =
-        rect.top <= clientHeight && rect.left <= clientWidth ? true : false
+      const isInViewport = rect.top <= clientHeight && rect.left <= clientWidth
       const isVisible = getComputedStyle(el)['display'] !== 'none'
+      const url = el.dataset.url
 
-      if (isInViewport && isVisible) {
-        el.src = el.dataset.url
+      if (isInViewport && isVisible && url) {
+        el.src = url
       }
     })
 
     // only hold elements which are not loaded
-    this.els = els.filter(el => el.getAttribute('src') !== el.dataset.url)
+    this.els = els.filter((el) => el.getAttribute('src') !== el.dataset.url)
   }
 
-  addEvents() {
-    eventNames.forEach(name => {
-      add(document, name, this.handleLoad)
-    })
+  initEvent() {
+    eventNames.forEach((name) => add(document, name, this.handleLoad))
   }
 
   clean() {
-    eventNames.forEach(name => {
-      remove(document, name, this.handleLoad)
-    })
+    eventNames.forEach((name) => remove(document, name, this.handleLoad))
   }
 }
 

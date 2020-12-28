@@ -1,47 +1,51 @@
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 
-function resolve(p) {
-  return path.resolve(__dirname, './', p)
-}
+const root = (pathname) => path.resolve(__dirname, pathname)
 
-module.exports = {
-  entry: './demo/main.ts',
-  output: {
-    path: resolve('demo/dist'),
-    filename: 'bundle.js'
-  },
-  resolve: {
-    extensions: ['.ts', '.js']
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        options: {
-          configFile: resolve('tsconfig.json')
-        }
-      },
-      {
-        test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      }
-    ]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'demo/index.html'
-    })
-  ],
-  devServer: {
-    port: 8085,
-    contentBase: resolve('demo'),
-    open: true,
-    hot: true,
-    stats: 'errors-only'
+module.exports = (env) => {
+  const devMode = env.NODE_ENV !== 'production'
+
+  return {
+    mode: env.NODE_ENV,
+    devtool: devMode ? 'cheap-module-source-map' : false,
+    entry: {
+      main: root('demo/main.ts'),
+    },
+    output: {
+      path: root('dist'),
+      filename: '[name].js',
+    },
+    resolve: {
+      extensions: ['.ts', '.js', '.json'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.[tj]s$/,
+          exclude: /node_modules/,
+          use: 'ts-loader',
+        },
+      ],
+    },
+    plugins: [
+      new ESLintWebpackPlugin({
+        files: ['src/**/*.ts'],
+      }),
+      new webpack.DefinePlugin({
+        __DEV__: devMode,
+        __TEST__: devMode,
+      }),
+      new HTMLWebpackPlugin({
+        template: root('demo/index.html'),
+      }),
+    ],
+    devServer: {
+      contentBase: [root('dist'), root('demo')],
+      open: true,
+      proxy: {},
+    },
   }
 }

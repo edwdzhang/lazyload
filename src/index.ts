@@ -3,11 +3,13 @@ import Observer from './observer'
 import { query, supportIntersectionOb } from './util'
 
 export default {
-  listen(el: string | NodeListOf<Element>) {
-    const els = query(el)
+  listen(el: string | Element[]) {
+    const els = query(el) as Array<HTMLImageElement | HTMLVideoElement>
     let watch: Observer | Events
 
-    if (!els.length) return
+    if (!els.length) {
+      return
+    }
 
     // priority using IntersectionObserver interface,
     // otherwise fallback to use event
@@ -20,5 +22,5 @@ export default {
     return function remove() {
       watch.clean()
     }
-  }
+  },
 }

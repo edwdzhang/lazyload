@@ -1,5 +1,4 @@
 import ll from '../src/index'
-import './app.scss'
 
 const $ = (selector: string) => {
   return document.querySelectorAll(selector)
@@ -14,28 +13,26 @@ let unlisten: any
 $init.addEventListener(
   'click',
   () => {
-    unlisten = ll.listen('img.lazy')
+    if (!unlisten) {
+      unlisten = ll.listen('img.lazy')
+    }
   },
   false
 )
 
-// clean watch
+// clean listen
 $clean.addEventListener(
   'click',
-  () => {
-    unlisten()
-  },
+  () => unlisten && unlisten(),
   false
 )
 
-// show hidden image
+// show hidden images
 $show.addEventListener(
   'click',
   () => {
-    const els = Array.from($('.lazy-hide'))
-    els.forEach(el => {
-      el.classList.remove('lazy-hide')
-    })
+    Array.from($('.lazy-hide'))
+      .forEach(el => el.classList.remove('lazy-hide'))
   },
   false
 )
