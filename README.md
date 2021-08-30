@@ -2,7 +2,7 @@
 
 Lazy load resource like image or video
 
-# Install
+# Installation
 
 ```sh
 npm install --save @cany/lazyload
@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 # API
 
-- **Lazyload.listen(selector | NodeList)**
+- `Lazyload.listen(selector | NodeList)`
 
   Listen to elements. which returns a function that can unlisten to elements.
 
 # License
 
-[MIT](LICENSE)
+MIT

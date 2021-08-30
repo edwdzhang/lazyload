@@ -1,11 +1,10 @@
 import path from 'path'
 import ts from 'rollup-plugin-typescript2'
-import json from '@rollup/plugin-json'
-import replace from '@rollup/plugin-replace'
 
+const resolve = (p) => path.resolve(__dirname, p)
 const packageDir = path.resolve(__dirname)
 const name = path.basename(packageDir)
-const resolve = (p) => path.resolve(packageDir, p)
+const globalName = name[0].toUpperCase() + name.slice(1)
 const outputConfigs = {
   esm: {
     file: resolve(`dist/${name}.esm.js`),
@@ -20,89 +19,38 @@ const outputConfigs = {
     format: 'iife',
   },
 }
-const pascalCase = (s) => {
-  s = s.replace(/-(\w)/g, (_, m) => m.toUpperCase())
-  return s[0].toUpperCase() + s.slice(1)
-}
 const packageFormats = Object.keys(outputConfigs)
 const packageConfigs = packageFormats.map((format) =>
   createConfig(format, outputConfigs[format])
 )
-
-packageFormats.forEach((format) => {
-  if (format === 'cjs') {
-    packageConfigs.push(createProductionConfig(format))
-  }
-
-  if (/^global/.test(format)) {
-    packageConfigs.push(createMinifiedConfig(format))
-  }
-})
-
-export default packageConfigs
+if (process.env.NODE_ENV === 'production') {
+  packageFormats.forEach((format) => {
+    if (format === 'cjs') {
+      packageConfigs.push(createProductionConfig(format))
+    }
+    if (/^global/.test(format)) {
+      packageConfigs.push(createMinifiedConfig(format))
+    }
+  })
+}
 
 function createConfig(format, output, plugins = []) {
-  output.externalLiveBindings = false
+  output.exports = 'auto'
 
-  const entryFile = 'src/index.ts'
-  const isDevBuild = process.env.NODE_ENV !== 'production'
-  const isGlobalBuild = /global/.test(format)
-
-  if (isGlobalBuild) {
-    output.name = pascalCase(name)
-  }
-  if (format === 'cjs') {
-    output.exports = 'auto'
+  const isGlobal = /global/.test(format)
+  if (isGlobal) {
+    output.name = globalName
   }
 
-  const external = []
-  const nodePlugins =
-    format !== 'cjs'
-      ? [
-          require('@rollup/plugin-node-resolve').nodeResolve(),
-          require('@rollup/plugin-commonjs')({
-            sourceMap: false,
-          }),
-          require('rollup-plugin-node-builtins')(),
-          require('rollup-plugin-node-globals')(),
-        ]
-      : []
   const tsPlugin = ts({
-    tsconfig: path.resolve(__dirname, 'tsconfig.json'),
-    cacheRoot: path.resolve(__dirname, 'node_modules/.rts2_cache'),
-    tsconfigOverride: {
-      compilerOptions: {
-        sourceMap: false,
-        declaration: true,
-      },
-      exclude: ['**/__tests__'],
-    },
+    tsconfig: resolve('tsconfig.json'),
   })
 
   return {
-    input: entryFile,
-    external,
+    input: resolve('src/index.ts'),
     output,
-    plugins: [
-      json(),
-      createReplacePlugin(isDevBuild),
-      tsPlugin,
-      ...nodePlugins,
-      ...plugins,
-    ],
-    onwarn(msg, warn) {
-      if (!/Circular/.test(msg)) {
-        warn(msg)
-      }
-    },
+    plugins: [tsPlugin, ...plugins],
   }
-}
-
-function createReplacePlugin(isDevBuild) {
-  return replace({
-    __DEV__: isDevBuild,
-    __TEST__: false,
-  })
 }
 
 function createProductionConfig(format) {
@@ -114,7 +62,6 @@ function createProductionConfig(format) {
 
 function createMinifiedConfig(format) {
   const { terser } = require('rollup-plugin-terser')
-
   return createConfig(
     format,
     {
@@ -133,3 +80,5 @@ function createMinifiedConfig(format) {
     ]
   )
 }
+
+export default packageConfigs

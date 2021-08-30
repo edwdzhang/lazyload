@@ -4,21 +4,19 @@
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "preserve",
     "lib": ["esnext", "dom"],
     "typeRoots": [
       "node_modules/@types"
     ],
-    "sourceMap": true,
     "allowJs": true,
     "strict": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "removeComments": false,
+    "declaration": true
   },
   "include": [
-    "src/**/*", 
-    "__tests__",
+    "src/**/*",
   ],
 }
