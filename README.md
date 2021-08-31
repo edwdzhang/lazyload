@@ -2,21 +2,21 @@
 
 Lazy load resource like image or video
 
-# Install
+# Installation
 
-```sh
+```
 npm install --save @cany/lazyload
 # or
 yarn add @cany/lazyload
 ```
 
-## CDN
+### CDN
 
 ```html
 <script src="https://unpkg.com/@cany/lazyload"></script>
 ```
 
-# Example
+## Usage
 
 ```html
 <img src="loading.gif" data-url="real-image-url" class="lazy" />
@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 ```
 
-# API
+## API
 
-- **Lazyload.listen(selector | NodeList)**
+- `Lazyload.listen(selector | NodeList)`
 
   Listen to elements. which returns a function that can unlisten to elements.
 
-# License
+## License
 
-[MIT](LICENSE)
+MIT
